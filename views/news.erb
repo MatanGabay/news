@@ -18,13 +18,104 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>Tel-Aviv Weather&News</title>
   </head>
   <body>
 
-    <div class="container mt-5">
-      <h1>News</h1>
+  <div class="container">
+    <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Welcome to Tel-Aviv Weather & News</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="today" style="color:white;">                        
+            <script> document.write(new Date().toLocaleDateString()); </script>
+        </li>
+      </ul>
+</nav>
+
+  </div>
+
+
+
+
+<div class="container">
+    <img class="img-fluid" src="/images/TelAviv.jpg" width="100%">
+</div>
+
+
+  <div class="container">
+  <div class="row md-12">
+    <div class="col-md-12 text-center">
+      <div class="card">
+       <h1 class="card-title">Weather Forecast</h1>
+        <img src="/images/sun.png" class="card-img-top" alt="..." >
+        <div class="card-body">
+        
+          <div style="width:100%">
+          <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col"> </th>
+                    <th scope="col">Max Temp (celcius)</th>
+                    <th scope="col">Description</th>
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">Today</th>
+                <td><%=@CurrentTemp%></td>
+                <td><%= @CurrentWeather%></td>
+                </tr>
+
+                <% for num in @NextWeek %>
+                    <tr>
+                    <th scope="row"><%= num["date"]%></th>
+                    <td><%= num["maxtemp"]%></td>
+                    <td><%= num["dailyweather"]%></td>
+                    </tr>
+                    <tr>
+                <% end %>
+
+            </tbody>
+            </table>
+        </div>
+      </div>
     </div>
+    </div>
+    </div>
+    </div>
+
+
+<div class="container">
+    <div class="row md-12">
+        <div class="col-md-12 text-center">
+            <div class="card">
+                <h1 class="card-title">Business News</h1>
+                <h6 class="card-title">Top Headlines</h6>
+                <img src="/images/news.png" class="card-img-top" alt="...">
+                <div class="container">
+
+                <% for story in @topnews %>
+                    <div class="card" style="width:100%;">
+                    <img src="<%=story["image"]%>" class="card-img" onerror="this.onerror=null;this.src='/images/news.png';" >
+                    <div class="card-body">
+                    <h3 class="card-title"><%=story["title"]%></h3>
+                    <p class="card-text"><%=story["description"]%></p>
+                    <a href="<%=story["article_link"]%>" class="btn btn-primary">Link to the full story</a>
+                    </div>
+                    </div>
+                <% end %>
+
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
